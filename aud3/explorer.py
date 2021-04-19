@@ -19,15 +19,15 @@ class Explorer(Problem):
 
         # 1 precka
         if obstacle1[2] == 0:  # up
-            if obstacle1[1] == max_y - 1:  # dali preckata e stignata do granicata na sistemot
+            if obstacle1[1] == max_y - 1:  
                 obstacle1[2] = 1
-                obstacle1[1] -= 1  # ja pridvizhuvame za 1 pozicija nadolu
+                obstacle1[1] -= 1  
             else:
                 obstacle1[1] += 1  # nagore
         else:  # down
             if obstacle1[1] == 0:  # proveruvame dali preckata stignala do granicata na tablata
-                obstacle1[2] = 0  # se dvizi nagore
-                obstacle1[1] += 1  # ja pridvizuvame za edna pozicija nagore
+                obstacle1[2] = 0  
+                obstacle1[1] += 1  
             else:
                 obstacle1[1] -= 1  # nadolu
 
@@ -35,13 +35,13 @@ class Explorer(Problem):
         if obstacle2[2] == 0:  # up
             if obstacle2[1] == max_y - 1:  # dali preckata e stignata do granicata na sistemot
                 obstacle2[2] = 1
-                obstacle2[1] -= 1  # ja pridvizhuvame za 1 pozicija nadolu
+                obstacle2[1] -= 1  
             else:
                 obstacle2[1] += 1  # nagore
         else:  # down
             if obstacle2[1] == 0:  # proveruvame dali preckata stignala do granicata na tablata
-                obstacle2[2] = 0  # se dvizi nagore
-                obstacle2[1] += 1  # ja pridvizuvame za edna pozicija nagore
+                obstacle2[2] = 0  
+                obstacle2[1] += 1  
             else:
                 obstacle2[1] -= 1  # nadolu
 
@@ -67,16 +67,15 @@ class Explorer(Problem):
         return self.successor(state)[action]
 
     def goal_test(self, state):
-        # dali pozicijata na coveceto vo tekovnata sostojba e ednakva na pozicijata na kukjickata
         position = (state[0], state[1])  # pozicija na coveceto
         return position == self.goal
 
 
 if __name__ == '__main__':
     goal_state = (7, 4)
-    initial_state = (0, 2)  # pocetna sostojba
-    obstacle_1 = (2, 5, 1)  # down
-    obstacle_2 = (5, 0, 0)  # up
+    initial_state = (0, 2)  
+    obstacle_1 = (2, 5, 1)  
+    obstacle_2 = (5, 0, 0)  
 
     explorer = Explorer((initial_state[0], initial_state[1], obstacle_1, obstacle_2), goal_state)
     result = breadth_first_graph_search(explorer)
