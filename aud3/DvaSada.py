@@ -4,9 +4,6 @@ from searching_framework.uninformed import *
 class Container(Problem):
     def __init__(self, capacities, initial, goal=None):
         super().__init__(initial,goal)
-        # capacities=kapacitet na sadovite, initial=pocetna sostojba,
-        # goal=kolku tecnost da imaat sadovite
-
         self.capacities = capacities
 
     def successor(self, state):
