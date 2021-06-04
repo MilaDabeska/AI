@@ -454,9 +454,9 @@ if __name__ == '__main__':
     accuracy2 = accuracy2 / len(test_y)
     print(f'Tochnost model2: {accuracy2}')
 
-    if (accuracy1 > accuracy2):
+    if accuracy1 > accuracy2:
         print('Prviot model ima pogolema tochnost')
-    elif (accuracy1 < accuracy2):
+    elif accuracy1 < accuracy2:
         print('Vtoriot model ima pogolema tochnost')
     else:
         print('Dvata modeli imaat ednakva tochnost')
