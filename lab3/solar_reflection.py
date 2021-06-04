@@ -1,6 +1,6 @@
+import warnings
 from sklearn.neural_network import MLPClassifier
-
-#nz dali e tocno reshenievo
+from sklearn.exceptions import ConvergenceWarning
 
 dataset = [
     [0.0307, 0.0523, 0.0653, 0.0521, 0.0611, 0.0577, 0.0665, 0.0664, 0.146, 0.2792, 0.3877, 0.4992, 0.4981, 0.4972,
@@ -412,56 +412,51 @@ if __name__ == '__main__':
     x_1 = int(input())
     x_2 = int(input())
 
-    solar_classes = [s for s in dataset if s[-1] == 0]
-    reflection_classes = [r for r in dataset if r[-1] == 1]
+    warnings.filterwarnings('ignore', category=ConvergenceWarning)
 
-    test_set = solar_classes[:int(len(solar_classes) * x_1)] + reflection_classes[:int(len(reflection_classes) * x_1)]
-    train_set = solar_classes[int(len(solar_classes) * x_1):] + reflection_classes[int(
-        len(reflection_classes) * x_1):]
+    test_dataset = dataset[:x_1]
+    train_dataset = dataset[x_1:]
 
-    train_x = [x[:-1] for x in train_set]
-    train_y = [x[-1] for x in train_set]
-    test_x = [x[:-1] for x in test_set]
-    test_y = [x[-1] for x in test_set]
-
-    classifier = MLPClassifier(3, activation='relu', learning_rate_init=0.003, max_iter=200, random_state=0)
-    classifier.fit(train_x, train_y)
-
-    final_classifier = None
-    accuracy = 0
-    predictions = final_classifier.predict(test_x)
-
-    for true, pred in zip(test_y, predictions):
-        if true == pred:
-            accuracy += 1
-
-    accuracy = accuracy / len(test_y)
-    print(f'Tochnost model1: {accuracy}')
-
-    test_set1 = solar_classes[:int(len(solar_classes) * x_2)] + reflection_classes[:int(len(reflection_classes) * x_2)]
-    train_set1 = solar_classes[int(len(solar_classes) * x_2):] + reflection_classes[int(
-        len(reflection_classes) * x_2):]
-
-    train_x1 = [x[:-1] for x in train_set1]
-    train_y1 = [x[-1] for x in train_set1]
-    test_x1 = [x[:-1] for x in test_set1]
-    test_y1 = [x[-1] for x in test_set1]
+    train_x = [x[:-1] for x in train_dataset]
+    train_y = [x[-1] for x in train_dataset]
+    test_x = [x[:-1] for x in test_dataset]
+    test_y = [x[-1] for x in test_dataset]
 
     classifier1 = MLPClassifier(3, activation='relu', learning_rate_init=0.003, max_iter=200, random_state=0)
-    classifier1.fit(train_x1, train_y1)
+    classifier1.fit(train_x, train_y)
 
-    final_classifier1 = None
     accuracy1 = 0
-    predictions1 = final_classifier1.predict(test_x1)
-
-    for true, pred in zip(test_y1, predictions1):
+    predictions1 = classifier1.predict(test_x)
+    for true, pred in zip(test_y, predictions1):
         if true == pred:
             accuracy1 += 1
 
-    accuracy1 = accuracy1 / len(test_y1)
-    print(f'Tochnost model2: {accuracy1}')
+    accuracy1 = accuracy1 / len(test_y)
+    print(f'Tochnost model1: {accuracy1}')
 
-    if (accuracy > accuracy1):
+    test_dataset = dataset[:x_2]
+    train_dataset = dataset[x_2:]
+
+    train_x = [x[:-1] for x in train_dataset]
+    train_y = [x[-1] for x in train_dataset]
+    test_x = [x[:-1] for x in test_dataset]
+    test_y = [x[-1] for x in test_dataset]
+
+    classifier2 = MLPClassifier(3, activation='relu', learning_rate_init=0.003, max_iter=200, random_state=0)
+    classifier2.fit(train_x, train_y)
+
+    accuracy2 = 0
+    predictions2 = classifier2.predict(test_x)
+    for true, pred in zip(test_y, predictions2):
+        if true == pred:
+            accuracy2 += 1
+
+    accuracy2 = accuracy2 / len(test_y)
+    print(f'Tochnost model2: {accuracy2}')
+
+    if (accuracy1 > accuracy2):
         print('Prviot model ima pogolema tochnost')
-    else:
+    elif (accuracy1 < accuracy2):
         print('Vtoriot model ima pogolema tochnost')
+    else:
+        print('Dvata modeli imaat ednakva tochnost')
