@@ -1,6 +1,6 @@
 import sys
 
-from .utils import Node, FIFOQueue, Stack, PriorityQueue, Problem
+from frameworks.utils import Node, FIFOQueue, Stack, PriorityQueue, Problem
 
 """
 Неинформирано пребарување во рамки на дрво.

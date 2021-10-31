@@ -1,5 +1,5 @@
-from searching_framework.utils import Problem
-from searching_framework.informed import *
+from frameworks.utils import Problem
+from frameworks.informed import *
 
 obstacles = [(0, 1), (1, 1), (1, 3), (2, 5), (3, 1), (3, 6), (4, 2),
              (5, 6), (6, 1), (6, 2), (6, 3), (7, 3), (7, 6), (8, 5)]

@@ -1,5 +1,5 @@
-from searching_framework.utils import Problem
-from searching_framework.informed import *
+from frameworks.utils import Problem
+from frameworks.informed import *
 
 
 def valid(state):

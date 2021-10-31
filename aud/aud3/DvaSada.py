@@ -1,5 +1,4 @@
-from searching_framework.utils import Problem
-from searching_framework.uninformed import *
+from frameworks.uninformed import *
 
 class Container(Problem):
     def __init__(self, capacities, initial, goal=None):

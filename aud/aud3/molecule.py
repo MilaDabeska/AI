@@ -1,5 +1,4 @@
-from searching_framework.utils import Problem
-from searching_framework.uninformed import *
+from frameworks.uninformed import *
 
 
 # x1 < 8 ; x1 > 0 -> u slucaj da ne iskoci od tablata

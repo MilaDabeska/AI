@@ -1,6 +1,6 @@
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from wine_neural import read_dataset, divide_sets
+from aud.aud9.wine_neural import read_dataset, divide_sets
 
 if __name__ == '__main__':
     dataset = read_dataset()
